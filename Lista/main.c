@@ -15,3 +15,6 @@ int x = insere_lista_final(li, dados_aluno);
 int x = insere_lista_ordenada(lis, dados_aluno);
 int x = remove_lista_inicio(li);
 int x = remove_lista_final(li);
+int x = remove_lista(li, matricula_aluno);
+int x = consulta_lista_pos(li, posicao, &dados_aluno);
+int x = consulta_lista_mat(li, posicao, &dados_aluno);

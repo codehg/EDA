@@ -134,15 +134,81 @@ int remove_lista_inicio(Lista* li){
 int remove_lista_final(Lista* li){
     if(li == NULL)
         return 0;
-    Elem *ant, *no = *li;
+    if((*li) == NULL) //lista vazia
+        return 0;
+   
+    //Percorre lista até o final dela
+    //ant e no são auxiliares com no sendo
+    //o primeiro item da lista
+    Elem *ant, *no = *li;      
     while(no->prox != NULL){
         ant = no;
         no = no->prox;
     }
-    if(no == (*li))
+    //eh o primeiro da lista?
+    if(no == (*li)) //sim
         *li = no->prox;
-    else
-        ant->prox = no->prox;
+    else //nao
+        ant->prox = no->prox; 
     free(no);
     return 1;    
+}
+
+//Remove um elemento qualquer da lista
+int remove_lista(Lista* li, int mat){
+    if(li == NULL)
+        return 0;
+    
+    Elem *ant, *no = *li;
+
+    while(no != NULL && no->dados.matricula != mat){
+        ant = no;
+        no = no->prox;
+    }
+    if(no == NULL) //Nao encontrado
+        return 0;
+    //Primeiro da lista?
+    if(no == *li) //SIM
+        *li = no->prox;
+    else    //NAO - ta no meio, ou no final
+        ant->prox = no->prox;
+    free(no)
+    return 1;
+}
+
+//Busca elemento pela posicao
+int consulta_lista_pos(Lista* li, int pos, struct aluno *al){
+    if(li == NULL || pos <= 0)
+        return 0;
+    
+    Elem *no = *li;
+    int i = 1;
+    while(no != NULL && i < pos){
+        no = no->prox;
+        i++;
+    }
+    if(no == NULL) //Cheguei no final da lista e nao encontrei a pos (ou lista vazia)
+        return 0;
+    else{ //Se achou, o ponteiro auxiliar (*al) recebe o conteudo do no
+        *al = no->dados; //auxiliar recebe o campo dados do no
+        return 1; //retorno 1 pq deu certo
+    }  
+}
+
+//Busca elemento pela matricula
+int consulta_lista_mat(Lista* li, int mat, struct aluno *al);{
+    if(li == NULL)
+        return 0;
+    
+    Elem *al, *no = *li;
+
+    while(no != NULL && no->dados.matricula != mat){
+        no = no->prox;
+    }
+    if(no == NULL)  //Nao achei
+        return 0;
+    else{
+        *al = no->dados;
+        return 1;
+    }
 }

@@ -28,4 +28,10 @@ int insere_lista_Ordenada(Lista* li, struct aluno al);
 int remove_lista_inicio(Lista* li);
 //Remove no inicio da lista
 int remove_lista_final(Lista* li);
+//Remove um elemento qualquer da lista
+int remove_lista(Lista* li, int mat);
+//Busca elemento pela posicao
+int consulta_lista_pos(Lista* li, int pos, struct aluno *al);
+//Busca elemento pela matricula (ou por um dado especifico)
+int consulta_lista_mat(Lista* li, int mat, struct aluno *al);
 
